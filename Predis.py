@@ -1,3 +1,7 @@
 import redis
-r = redis.Redis()
-r.ping()
+r = redis.Redis(host='localhost', port=6379, decode_responses=True)
+
+
+
+
+
