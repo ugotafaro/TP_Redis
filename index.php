@@ -71,7 +71,7 @@ $result = $conn->query($query);
 
 if ($result === false) {
     // Handle query error
-    echo "Query error: " . $conn->error;
+    echo "Query error: " . $conn->error; 
 } else {
     // Use num_rows method to check the number of rows in the result
     if ($result->num_rows > 0) {
