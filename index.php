@@ -52,15 +52,15 @@ $username = "root";
 $password = "";
 $dbname = "tp_redis";
 
-// Create a connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
-// Retrieve form data
+
 $email = $_POST['email'];
 $name = $_POST['name'];
 $surname = $_POST['surname'];
@@ -76,7 +76,8 @@ if ($result === false) {
 } else {
     
     $pythonScript = "Predis.py";
-    $command = "C:/Users/lilac/AppData/Local/Programs/Python/Python312/python.exe $pythonScript $email 2>&1 ";
+    $pythonPath = "C:/Users/lilac/AppData/Local/Programs/Python/Python312/python.exe" // modifier avec votre chemin vers pyhton
+    $command = " $pythonScript $email 2>&1 ";
 
     $output = shell_exec($command);
 
