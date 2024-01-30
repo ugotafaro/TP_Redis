@@ -44,8 +44,7 @@
 </html>
 
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+
 
     
 $servername = "localhost";
@@ -76,23 +75,21 @@ if ($result === false) {
     echo "Query error: " . $conn->error; 
 } else {
     
-    $pythonScript = realpath("Predis.py");
-    $command = "python $pythonScript $email 2>&1 ";
+    $pythonScript = "Predis.py";
+    $command = "C:/Users/lilac/AppData/Local/Programs/Python/Python312/python.exe $pythonScript $email 2>&1 ";
 
     $output = shell_exec($command);
 
-    echo $output;
-
-    // if(trim($output) ==  "true"){
-    //     if ($result->num_rows > 0) {
-    //         header("Location: accueil.php");
-    //     } else {
-    //         echo "Login failed. Please check your credentials.";
-    //     }
-    // }
-    // else{
-    //     echo "Trop de connexion depuis 10 min";
-    // }
+    if(trim($output) ==  "true"){
+        if ($result->num_rows > 0) {
+            header("Location: accueil.php");
+        } else {
+            $error =  "Login failed. Please check your credentials.";
+        }
+    }
+    else{
+        $error =  "Trop de connexion depuis 10 min";
+    }
 
     
 }
