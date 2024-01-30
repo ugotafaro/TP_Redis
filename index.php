@@ -77,7 +77,7 @@ if ($result === false) {
 } else {
     
     $pythonScript = realpath("Predis.py");
-    $command = "python $pythonScript $email 2>&1";
+    $command = "python $pythonScript $email 2>&1 ";
 
     $output = shell_exec($command);
 
