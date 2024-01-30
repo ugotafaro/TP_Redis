@@ -44,6 +44,8 @@
 </html>
 
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
     
 $servername = "localhost";
@@ -65,24 +67,35 @@ $name = $_POST['name'];
 $surname = $_POST['surname'];
 $password = $_POST['password'];
 
-// Perform a simple query to check if the user exists in the database
-$query = "SELECT * FROM utilisateur WHERE email = '$email' AND password = '$password'";
+
+$query = "SELECT * FROM Utilisateur WHERE email = '$email' AND password = '$password'";
 $result = $conn->query($query);
 
 if ($result === false) {
-    // Handle query error
+    
     echo "Query error: " . $conn->error; 
 } else {
-    // Use num_rows method to check the number of rows in the result
-    if ($result->num_rows > 0) {
-        // User exists, do something (e.g., redirect to a welcome page)
-        header("Location: accueil.php");
-    } else {
-        // User doesn't exist or credentials are incorrect
-        echo "Login failed. Please check your credentials.";
-    }
+    
+    $pythonScript = realpath("Predis.py");
+    $command = "python $pythonScript $email 2>&1";
+
+    $output = shell_exec($command);
+
+    echo $output;
+
+    // if(trim($output) ==  "true"){
+    //     if ($result->num_rows > 0) {
+    //         header("Location: accueil.php");
+    //     } else {
+    //         echo "Login failed. Please check your credentials.";
+    //     }
+    // }
+    // else{
+    //     echo "Trop de connexion depuis 10 min";
+    // }
+
+    
 }
 
-// Close the connection
 $conn->close();
 ?>

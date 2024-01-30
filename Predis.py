@@ -1,5 +1,6 @@
 import redis
 import time
+import sys
 
 
 def check_and_increment_connections(username):
@@ -24,4 +25,6 @@ def check_and_increment_connections(username):
         print("true")
 
 
-check_and_increment_connections("Ugo")
+if len(sys.argv) > 1:
+    check_and_increment_connections(sys.argv[1])
+
