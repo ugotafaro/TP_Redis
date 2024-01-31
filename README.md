@@ -1,3 +1,5 @@
+Ugo Tafaro et Loïs Blin
+
 # Lien github
 https://github.com/ugotafaro/TP_Redis
 
